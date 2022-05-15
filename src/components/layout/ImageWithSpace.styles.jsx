@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const WITH_BREAK = "600px"
+export const WITH_BREAK = "500px"
 
 export const Wrapper = styled.div `
     
@@ -25,11 +25,16 @@ export const WrapperImage = styled.div `
 export const WrapperCard = styled.div `
     
     background-color: white;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    padding: 30px;
     
     @media (min-width: ${WITH_BREAK}) {
         
-        min-width: ${WITH_BREAK}
+        width: calc(${WITH_BREAK} - 60px) 
     }
 
     @media (max-width: ${WITH_BREAK}) {
@@ -37,4 +42,21 @@ export const WrapperCard = styled.div `
         width: 100%;
     }
 
+`
+
+export const FormContainer = styled.div `
+    
+    margin-top: 60px;
+`
+
+export const Form = styled.form `
+    
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+`
+export const Register = styled.p `
+    
+    
 `
