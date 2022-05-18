@@ -2,14 +2,14 @@ import { Wrapper, WrapperCard, WrapperImage } from "./ImageWithSpace.styles";
 
 
 export default function ImageWithSpace({ children }) {
-   
+
     return (
         <Wrapper>
-            <WrapperImage/>
+            <WrapperImage />
             <WrapperCard>
-            {children}
+                {children}
             </WrapperCard>
-            
+
         </Wrapper>
     )
 }

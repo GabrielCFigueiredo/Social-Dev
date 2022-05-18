@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
+import theme from "../src/theme";
 
 export const GlobalStyles = createGlobalStyle `
 
@@ -11,12 +12,18 @@ export const GlobalStyles = createGlobalStyle `
 
 body {
     font-family: "Roboto",sans-serif;
-    color: #3A3A3A;
+    color: ${props => props.theme.black};
 }
 
 a {
-    color: #8933cd;
+    color: ${props => props.theme.primary};
     text-decoration: none;
     font-weight: bold;
+    transition: 0.5s;
+}
+
+a:hover {
+    color: ${props => props.theme.primaryHover};
+    
 }
 `

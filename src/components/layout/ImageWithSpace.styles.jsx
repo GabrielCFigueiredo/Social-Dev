@@ -24,7 +24,7 @@ export const WrapperImage = styled.div `
 `
 export const WrapperCard = styled.div `
     
-    background-color: white;
+    background-color: ${props => props.theme.white};
     display: flex;
     align-items: center;
     justify-content: center;
