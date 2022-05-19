@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
 body {
     font-family: "Roboto",sans-serif;
     color: ${(props) => props.theme.black};
-    
+    background-color: ${(props) => props.theme.background}
 }
 
 a {

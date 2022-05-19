@@ -1,10 +1,10 @@
-
-
+import NavBar from "../src/components/navBar/navBar";
 
 export default function Home() {
   return (
-    <div>
-     ola
-    </div>
-  )
+    <>
+      <NavBar />
+      <div>ola</div>
+    </>
+  );
 }
