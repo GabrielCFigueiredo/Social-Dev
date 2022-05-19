@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const WITH_BREAK = "500px"
+export const WITH_BREAK = "550px"
 
 export const Wrapper = styled.div `
     
@@ -31,6 +31,8 @@ export const WrapperCard = styled.div `
     flex-direction: column;
     gap: 16px;
     padding: 30px;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
     
     @media (min-width: ${WITH_BREAK}) {
         
@@ -57,6 +59,6 @@ export const Form = styled.form `
     width: 100%;
 `
 export const Register = styled.p `
-    
+  font-size: 16px;  
     
 `

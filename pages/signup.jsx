@@ -9,21 +9,24 @@ import {
 } from "../src/components/layout/ImageWithSpace.styles";
 import { H1, H2, H4 } from "../src/components/typography/Typography.styles";
 
-export default function Login() {
+export default function Signup() {
   return (
     <ImageWithSpace>
       <H1># Social Dev</H1>
       <H4>Tudo que acontece no mundo dev, está aqui!</H4>
       <FormContainer>
-        <H2>Entre em sua Conta</H2>
+        <H2>Crie sua Conta</H2>
       </FormContainer>
       <Form>
+        <Input Label={"nome"} type={"text"} />
+        <Input Label={"sobrenome"} type={"text"} />
+        <Input Label={"usuario"} type={"text"} />
         <Input Label={"email"} type={"email"} />
         <Input Label={"senha"} type={"password"} />
         <Button>Entrar</Button>
       </Form>
       <Register>
-        Não possui uma conta? <Link href="/signup">Faça seu Cadastro</Link>
+        Já possui uma conta? <Link href="/login">Faça seu Login</Link>
       </Register>
     </ImageWithSpace>
   );
