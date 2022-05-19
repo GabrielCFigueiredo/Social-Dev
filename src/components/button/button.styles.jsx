@@ -17,3 +17,20 @@ transition: 0.5s;
 }
 
 `
+export const ButtonMedium = styled.button `
+    
+background-color: ${props => props.theme.primary};
+padding: 10px 15px;
+border-radius: 5px;
+border: none;
+font-weight: bold;
+color: ${props => props.theme.white};
+font-size: 16px;
+cursor: pointer;
+transition: 0.5s;
+
+:hover {
+    background-color: ${props => props.theme.primaryHover};
+}
+
+`
