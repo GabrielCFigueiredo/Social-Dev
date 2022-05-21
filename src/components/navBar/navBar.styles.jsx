@@ -5,7 +5,7 @@ export const WrapperStyle = styled.div`
   height: 80px;
   display: flex;
   align-items: center;
-  padding: 0 100px;
+  padding: 0 80px;
 
   @media (max-width: 550px) {
     padding: 0 20px;

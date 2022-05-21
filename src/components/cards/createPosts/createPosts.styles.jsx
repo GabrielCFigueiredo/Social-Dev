@@ -6,7 +6,7 @@ export const WrapperCreatePost = styled.div`
   display: flex;
   gap: 16px;
   flex-direction: column;
-  
+  border-radius: 5px;
 
   @media (max-width: 550px) {
     padding: 20px;
@@ -26,7 +26,7 @@ export const ContainerButton = styled.div`
   width: 100%;
 
   @media (max-width: 550px) {
-    flex-direction:column-reverse
+    flex-direction: column-reverse;
   }
 `;
 export const ButtonText = styled.p`

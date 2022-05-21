@@ -7,13 +7,13 @@ import {
   FormContainer,
   Register,
 } from "../src/components/layout/ImageWithSpace.styles";
-import { H1, H2, H4 } from "../src/components/typography/Typography.styles";
+import { H1, H2, H3 } from "../src/components/typography/Typography.styles";
 
 export default function Signup() {
   return (
     <ImageWithSpace>
       <H1># Social Dev</H1>
-      <H4>Tudo que acontece no mundo dev, está aqui!</H4>
+      <H3>Tudo que acontece no mundo dev, está aqui!</H3>
       <FormContainer>
         <H2>Crie sua Conta</H2>
       </FormContainer>
