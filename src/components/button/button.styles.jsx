@@ -9,11 +9,14 @@ border: none;
 font-weight: bold;
 color: ${props => props.theme.white};
 font-size: 16px;
-cursor: pointer;
+cursor: ${props => props.disabled ? `` : `pointer`};
 transition: 0.5s;
 
 :hover {
     background-color: ${props => props.theme.primaryHover};
+}
+:disabled {
+    background-color: gray;
 }
 
 `

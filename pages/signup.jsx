@@ -13,6 +13,7 @@ import { H1, H2, H3 } from "../src/components/typography/Typography.styles";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { signupSchema } from "../modules/user/user.schema";
 
+
 export default function Signup() {
   const {
     register,
@@ -30,7 +31,6 @@ export default function Signup() {
   const handleForm = (data) => {
     console.log(data);
   };
-  console.log(errors);
 
   return (
     <ImageWithSpace>
@@ -40,12 +40,37 @@ export default function Signup() {
         <H2>Crie sua Conta</H2>
       </FormContainer>
       <Form onSubmit={handleSubmit(handleForm)}>
-        <Input Label={"nome"} type={"text"} {...register("firstName")} />
-        <Input Label={"sobrenome"} type={"text"} {...register("lastName")} />
-        <Input Label={"usuario"} type={"text"} {...register("user")} />
-        <Input Label={"email"} type={"email"} {...register("email")} />
-        <Input Label={"senha"} type={"password"} {...register("password")} />
-        <Button type="submit">Cadastrar</Button>
+        <Input
+          Label={"nome"}
+          type={"text"}
+          {...register("firstName")}
+          error={errors.firstName}
+        />
+        <Input
+          Label={"sobrenome"}
+          type={"text"}
+          {...register("lastName")}
+          error={errors.lastName}
+        />
+        <Input
+          Label={"usuario"}
+          type={"text"}
+          {...register("user")}
+          error={errors.user}
+        />
+        <Input
+          Label={"email"}
+          type={"email"}
+          {...register("email")}
+          error={errors.email}
+        />
+        <Input
+          Label={"senha"}
+          type={"password"}
+          {...register("password")}
+          error={errors.password}
+        />
+        <Button type="submit" disabled={Object.keys(errors).length > 0} >Cadastrar</Button>
       </Form>
       <Register>
         Já possui uma conta? <Link href="/login">Faça seu Login</Link>
