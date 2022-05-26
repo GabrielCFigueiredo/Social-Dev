@@ -13,10 +13,9 @@ import { H1, H2, H3 } from "../src/components/typography/Typography.styles";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { signupSchema } from "../modules/user/user.schema";
 
-
 export default function Signup() {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -43,34 +42,36 @@ export default function Signup() {
         <Input
           Label={"nome"}
           type={"text"}
-          {...register("firstName")}
-          error={errors.firstName}
+          name={"firstName"}
+          control={control}
         />
         <Input
           Label={"sobrenome"}
           type={"text"}
-          {...register("lastName")}
-          error={errors.lastName}
+          name={"lastName"}
+          control={control}
         />
         <Input
           Label={"usuario"}
           type={"text"}
-          {...register("user")}
-          error={errors.user}
+          name={"user"}
+          control={control}
         />
         <Input
           Label={"email"}
           type={"email"}
-          {...register("email")}
-          error={errors.email}
+          name={"email"}
+          control={control}
         />
         <Input
           Label={"senha"}
           type={"password"}
-          {...register("password")}
-          error={errors.password}
+          name={"password"}
+          control={control}
         />
-        <Button type="submit" disabled={Object.keys(errors).length > 0} >Cadastrar</Button>
+        <Button type="submit" disabled={Object.keys(errors).length > 0}>
+          Cadastrar
+        </Button>
       </Form>
       <Register>
         Já possui uma conta? <Link href="/login">Faça seu Login</Link>

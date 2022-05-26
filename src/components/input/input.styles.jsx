@@ -14,12 +14,14 @@ export const StyledInput = styled.input`
   width: 100%;
 
   :focus {
-    outline: ${props=> props.error ? `${props.theme.error}` : `none`};
-    border-color: ${(props) => props.error ? `${props.theme.error}` : `${props.theme.primary}`};
+    outline: ${(props) => (props.error ? `${props.theme.error}` : `none`)};
+    border-color: ${(props) =>
+      props.error ? `${props.theme.error}` : `${props.theme.primary}`};
   }
 
   :hover {
-    border-color: ${(props) => props.error ? `${props.theme.error}` : `${props.theme.primary}`};
+    border-color: ${(props) =>
+      props.error ? `${props.theme.error}` : `${props.theme.primary}`};
   }
 `;
 
@@ -31,5 +33,5 @@ export const ErrorLabel = styled.p`
 export const ErrorMessage = {
   "string.empty": "O campo é obrigatório",
   "string.email": "Digite um email valído",
-  "string.min": "Sua senha deve ter no minimo 6 caracteres"
-}
+  "string.min": "Sua senha deve ter no minimo 6 caracteres",
+};
