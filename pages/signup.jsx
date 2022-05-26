@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Button } from "../src/components/button/button.styles";
 import Input from "../src/components/input/input";
 import ImageWithSpace from "../src/components/layout/ImageWithSpace";
@@ -9,17 +10,27 @@ import {
   Register,
 } from "../src/components/layout/ImageWithSpace.styles";
 import { H1, H2, H3 } from "../src/components/typography/Typography.styles";
+import { joiResolver } from "@hookform/resolvers/joi";
+import { signupSchema } from "../modules/user/user.schema";
 
 export default function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: joiResolver(signupSchema),
+  });
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [user, setUser] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-const handleForm = (e) => {
-e.preventDefault()
-}
+  const handleForm = (data) => {
+    console.log(data);
+  };
+  console.log(errors);
 
   return (
     <ImageWithSpace>
@@ -28,43 +39,13 @@ e.preventDefault()
       <FormContainer>
         <H2>Crie sua Conta</H2>
       </FormContainer>
-      <Form onSubmit={handleForm}>
-        <Input
-          Label={"nome"}
-          type={"text"}
-          onChange={({ target }) => {
-            setFirstName(target.value);
-          }}
-        />
-        <Input
-          Label={"sobrenome"}
-          type={"text"}
-          onChange={({ target }) => {
-            setLastName(target.value);
-          }}
-        />
-        <Input
-          Label={"usuario"}
-          type={"text"}
-          onChange={({ target }) => {
-            setUser(target.value);
-          }}
-        />
-        <Input
-          Label={"email"}
-          type={"email"}
-          onChange={({ target }) => {
-            setEmail(target.value);
-          }}
-        />
-        <Input
-          Label={"senha"}
-          type={"password"}
-          onChange={({ target }) => {
-            setPassword(target.value);
-          }}
-        />
-        <Button>Cadastrar</Button>
+      <Form onSubmit={handleSubmit(handleForm)}>
+        <Input Label={"nome"} type={"text"} {...register("firstName")} />
+        <Input Label={"sobrenome"} type={"text"} {...register("lastName")} />
+        <Input Label={"usuario"} type={"text"} {...register("user")} />
+        <Input Label={"email"} type={"email"} {...register("email")} />
+        <Input Label={"senha"} type={"password"} {...register("password")} />
+        <Button type="submit">Cadastrar</Button>
       </Form>
       <Register>
         Já possui uma conta? <Link href="/login">Faça seu Login</Link>
