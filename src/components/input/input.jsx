@@ -5,7 +5,6 @@ import {
   StyledInput,
   StyledLabel,
 } from "./input.styles";
-import { useController } from "react-hook-form";
 import { forwardRef } from "react";
 const Input = forwardRef(function Input({ Label, error, ...props }, ref) {
   return (

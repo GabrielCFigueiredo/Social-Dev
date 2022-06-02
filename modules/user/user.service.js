@@ -14,7 +14,7 @@ export const SignupUser = async (body) => {
   }
 };
 
-export const login = async (body) => {
+export const LoginUser = async (body) => {
   try {
     const user = await User.findOne({
       $or: [{ email: body.userOrEmail }, { user: body.userOrEmail }],

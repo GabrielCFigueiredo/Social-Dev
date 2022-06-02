@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import { useForm } from "react-hook-form";
 import { Button } from "../src/components/button/button.styles";
 import Input from "../src/components/input/input";
@@ -14,16 +13,14 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { signupSchema } from "../modules/user/user.schema";
-import { ErrorLabel, ErrorMessage } from "../src/components/input/input.styles";
-import { useState } from "react";
 
 export default function Signup() {
-  const [erro, setErro] = useState("");
   const router = useRouter();
   const {
     register,
     handleSubmit,
-    formState: { errors }, setError
+    formState: { errors },
+    setError,
   } = useForm({
     resolver: joiResolver(signupSchema),
   });
@@ -38,8 +35,9 @@ export default function Signup() {
         router.push("/");
       }
     } catch (error) {
-      if (error.response.data.code === 11000) setError(error.response.data.duplicatedKey, {
-          type: "duplicated"
+      if (error.response.data.code === 11000)
+        setError(error.response.data.duplicatedKey, {
+          type: "duplicated",
         });
     }
   };
@@ -73,7 +71,6 @@ export default function Signup() {
             {...register("user")}
             error={errors.user}
           />
-          {<ErrorLabel>{erro}</ErrorLabel>}
           <Input
             Label={"email"}
             type={"email"}
