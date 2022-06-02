@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useState } from "react";
+
 import { useForm } from "react-hook-form";
 import { Button } from "../src/components/button/button.styles";
 import Input from "../src/components/input/input";
@@ -11,24 +11,37 @@ import {
 } from "../src/components/layout/ImageWithSpace.styles";
 import { H1, H2, H3 } from "../src/components/typography/Typography.styles";
 import { joiResolver } from "@hookform/resolvers/joi";
+import axios from "axios";
+import { useRouter } from "next/router";
 import { signupSchema } from "../modules/user/user.schema";
+import { ErrorLabel, ErrorMessage } from "../src/components/input/input.styles";
+import { useState } from "react";
 
 export default function Signup() {
+  const [erro, setErro] = useState("");
+  const router = useRouter();
   const {
-    control,
+    register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }, setError
   } = useForm({
     resolver: joiResolver(signupSchema),
   });
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [user, setUser] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
 
-  const handleForm = (data) => {
-    console.log(data);
+  const handleForm = async (data) => {
+    try {
+      const { status } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user/signup`,
+        data
+      );
+      if (status === 201) {
+        router.push("/");
+      }
+    } catch (error) {
+      if (error.response.data.code === 11000) setError(error.response.data.duplicatedKey, {
+          type: "duplicated"
+        });
+    }
   };
 
   return (
@@ -37,45 +50,52 @@ export default function Signup() {
       <H3>Tudo que acontece no mundo dev, está aqui!</H3>
       <FormContainer>
         <H2>Crie sua Conta</H2>
+
+        <Form onSubmit={handleSubmit(handleForm)}>
+          <Input
+            Label={"nome"}
+            type={"text"}
+            name={"firstName"}
+            {...register("firstName")}
+            error={errors.firstName}
+          />
+          <Input
+            Label={"sobrenome"}
+            type={"text"}
+            name={"lastName"}
+            {...register("lastName")}
+            error={errors.lastName}
+          />
+          <Input
+            Label={"usuario"}
+            type={"text"}
+            name={"user"}
+            {...register("user")}
+            error={errors.user}
+          />
+          {<ErrorLabel>{erro}</ErrorLabel>}
+          <Input
+            Label={"email"}
+            type={"email"}
+            name={"email"}
+            {...register("email")}
+            error={errors.email}
+          />
+          <Input
+            Label={"senha"}
+            type={"password"}
+            name={"password"}
+            {...register("password")}
+            error={errors.password}
+          />
+          <Button type="submit" disabled={Object.keys(errors).length > 0}>
+            Cadastrar
+          </Button>
+        </Form>
+        <Register>
+          Já possui uma conta? <Link href="/login">Faça seu Login</Link>
+        </Register>
       </FormContainer>
-      <Form onSubmit={handleSubmit(handleForm)}>
-        <Input
-          Label={"nome"}
-          type={"text"}
-          name={"firstName"}
-          control={control}
-        />
-        <Input
-          Label={"sobrenome"}
-          type={"text"}
-          name={"lastName"}
-          control={control}
-        />
-        <Input
-          Label={"usuario"}
-          type={"text"}
-          name={"user"}
-          control={control}
-        />
-        <Input
-          Label={"email"}
-          type={"email"}
-          name={"email"}
-          control={control}
-        />
-        <Input
-          Label={"senha"}
-          type={"password"}
-          name={"password"}
-          control={control}
-        />
-        <Button type="submit" disabled={Object.keys(errors).length > 0}>
-          Cadastrar
-        </Button>
-      </Form>
-      <Register>
-        Já possui uma conta? <Link href="/login">Faça seu Login</Link>
-      </Register>
     </ImageWithSpace>
   );
 }

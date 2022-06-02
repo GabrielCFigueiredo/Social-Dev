@@ -6,17 +6,13 @@ import {
   StyledLabel,
 } from "./input.styles";
 import { useController } from "react-hook-form";
-
-const Input = (function Input({ Label, name,control, defaultValue = "", ...props }, ref) {
-  const {
-field: { value, onChange },
-fieldState: { error }
-  } = useController({ name, control, defaultValue })
+import { forwardRef } from "react";
+const Input = forwardRef(function Input({ Label, error, ...props }, ref) {
   return (
     <InputContainer>
       <StyledLabel>{Label}</StyledLabel>
 
-      <StyledInput placeholder={Label} error={error} {...props} value={value} onChange={onChange} />
+      <StyledInput placeholder={Label} error={error} {...props} ref={ref} />
       {error && (
         <ErrorLabel>{ErrorMessage[error.type] || error.message}</ErrorLabel>
       )}

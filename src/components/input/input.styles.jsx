@@ -34,4 +34,6 @@ export const ErrorMessage = {
   "string.empty": "O campo é obrigatório",
   "string.email": "Digite um email valído",
   "string.min": "Sua senha deve ter no minimo 6 caracteres",
+  "duplicated": "já existe uma conta com esse valor.",
+  "errorEmail": "Já existe um email com esse valor."
 };
