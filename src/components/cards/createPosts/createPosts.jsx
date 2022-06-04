@@ -5,10 +5,10 @@ import { ButtonText, ContainerButton, TextContainer, Title, WrapperCreatePost } 
 
 
 
-export default function CreatePosts() {
+export default function CreatePosts({ userName }) {
     return (
         <WrapperCreatePost>
-            <Title>No que você está pensando, @nick?</Title>
+            <Title>No que você está pensando,?{userName}</Title>
             <TextContainer>
                 <Textarea placeholder="Digite sua mensagem" rows={4} />
             </TextContainer>
