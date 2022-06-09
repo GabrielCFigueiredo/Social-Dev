@@ -4,13 +4,14 @@ import {
   StyledUser,
   WrapperPosts,
 } from "./posts.styles";
+import moment from "moment"
 
-export default function Posts() {
+export default function Posts({ user, text, date}) {
   return (
     <WrapperPosts>
-      <StyledUser>@GabrielFigueiredo</StyledUser>
-      <StyledData>20 de maio 2022</StyledData>
-      <StyledText>hoje esta muito frio</StyledText>
+      <StyledUser>@{user}</StyledUser>
+      <StyledData>{moment(date).format("LLL")}</StyledData>
+      <StyledText>{text}</StyledText>
     </WrapperPosts>
   );
 }

@@ -18,8 +18,9 @@ handler.post(validate({ body: createSchema }), async (req, res) => {
 handler.get(async (req, res) => {
   try {
     if (!req.session.user) return res.status(401).send();
-    const getPost = await getPosts();
-    res.status(200).send({ getPost });
+    const posts = await getPosts();
+    res.status(200).send({ posts });
+
   } catch (error) {
     res.status(500).send(error.message);
   }
