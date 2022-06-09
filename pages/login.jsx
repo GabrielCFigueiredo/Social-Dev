@@ -15,7 +15,7 @@ import {
 import { H1, H2, H3 } from "../src/components/typography/Typography.styles";
 
 export default function Login() {
-  const router = useRouter()
+  const router = useRouter();
 
   const {
     register,
@@ -26,25 +26,25 @@ export default function Login() {
     resolver: joiResolver(loginSchema),
   });
 
-  const onSubmit =  async data => {
+  const onSubmit = async (data) => {
     try {
-      const { status } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`, data)
+      const { status } = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user/login`,
+        data
+      );
       if (status === 200) {
-        router.push("/")
+        router.push("/");
       }
-    console.log(data);
     } catch (error) {
       if (error.response.data === "password incorrect") {
-        setError("password", { type: "password incorrect"})
+        setError("password", { type: "password incorrect" });
       } else {
-        if (error.response.data === 'user ou email not found') {
-          setError("userOrEmail", { type: "userOrEmail"})
+        if (error.response.data === "user ou email not found") {
+          setError("userOrEmail", { type: "userOrEmail" });
         }
       }
-      console.log(error.response);
     }
-    
-  }
+  };
   return (
     <ImageWithSpace>
       <H1># Social Dev</H1>
@@ -67,7 +67,9 @@ export default function Login() {
           error={errors.password}
           type={"password"}
         />
-        <Button type="submit" disabled={Object.keys(errors).length > 0}>Entrar</Button>
+        <Button type="submit" disabled={Object.keys(errors).length > 0}>
+          Entrar
+        </Button>
       </Form>
       <Register>
         Não possui uma conta? <Link href="/signup">Faça seu Cadastro</Link>

@@ -4,9 +4,9 @@ import {
   StyledUser,
   WrapperPosts,
 } from "./posts.styles";
-import moment from "moment"
+import moment from "moment";
 
-export default function Posts({ user, text, date}) {
+export default function Posts({ user, text, date }) {
   return (
     <WrapperPosts>
       <StyledUser>@{user}</StyledUser>

@@ -19,7 +19,7 @@ export const Button = styled.button`
   }
 `;
 export const ButtonMedium = styled.button`
-  background-color: ${(props) => props.theme.primary};
+  background-color: ${(props) => (props.disabled ? "gray" : props.theme.primary)};
   padding: 10px 15px;
   border-radius: 5px;
   border: none;
@@ -30,6 +30,6 @@ export const ButtonMedium = styled.button`
   transition: 0.5s;
 
   :hover {
-    background-color: ${(props) => props.theme.primaryHover};
+    background-color: ${(props) => (props.disabled ? "gray" : props.theme.primaryHover)};
   }
 `;

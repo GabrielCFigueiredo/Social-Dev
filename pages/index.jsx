@@ -4,13 +4,13 @@ import Container from "../src/components/container/container";
 import CreatePosts from "../src/components/cards/createPosts/createPosts";
 import { withIronSessionSsr } from "iron-session/next";
 import {
-  ContainerLoadPosts,
+  
   LatestPosts,
-  LoadPosts,
+  
 } from "../src/components/typography/Typography.styles";
 import Posts from "../src/components/cards/posts/posts";
 import { ironConfig } from "../lib/middleWares/ironSession";
-import { useEffect, useState } from "react";
+
 import axios from "axios";
 import useSWR from "swr";
 
@@ -22,13 +22,13 @@ const Content = styled.div`
   gap: 16px;
 `;
 
-const fetcher = url => axios.get(url).then(res => res.data.posts)
+const fetcher = (url) => axios.get(url).then((res) => res.data.posts);
 
 export default function Home({ user }) {
-  
-  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, fetcher)
-
-  console.log(data);
+  const { data } = useSWR(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/post`,
+    fetcher
+  );
   return (
     <>
       <NavBar />
@@ -36,20 +36,17 @@ export default function Home({ user }) {
         <Container>
           <CreatePosts userName={user.user} />
           <LatestPosts>Ultimas Postagens:</LatestPosts>
-          <ContainerLoadPosts>
-            <LoadPosts>Carregar novos posts</LoadPosts>
-          </ContainerLoadPosts>
-          {
-            data?.map((post) => {
-              return (
-                <Posts
-                  key={post._id}
-                  user={post.createdBy.user}
-                  date={post.createdDate}
-                  text={post.text}
-                />
-              );
-            })}
+          
+          {data?.map((post) => {
+            return (
+              <Posts
+                key={post._id}
+                user={post.createdBy.user}
+                date={post.createdDate}
+                text={post.text}
+              />
+            );
+          })}
         </Container>
       </Content>
     </>

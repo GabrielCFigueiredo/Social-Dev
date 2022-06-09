@@ -1,7 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../globalStyles/globalStyles";
 import moment from "moment";
-import "moment/locale/pt-br"
+import "moment/locale/pt-br";
 import theme from "../src/theme";
 import { useEffect } from "react";
 
