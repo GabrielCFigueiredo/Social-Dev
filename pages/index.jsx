@@ -12,6 +12,7 @@ import Posts from "../src/components/cards/posts/posts";
 import { ironConfig } from "../lib/middleWares/ironSession";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useSWR from "swr";
 
 const Content = styled.div`
   display: flex;
@@ -21,24 +22,12 @@ const Content = styled.div`
   gap: 16px;
 `;
 
+const fetcher = url => axios.get(url).then(res => res.data.posts)
+
 export default function Home({ user }) {
-  const [data, setData] = useState([]);
+  
+  const { data } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/post`, fetcher)
 
-  const handlePost = async () => {
-    try {
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/post`
-      );
-      setData(response.data.posts);
-      console.log(response.data.posts);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
-
-  useEffect(() => {
-    handlePost();
-  }, []);
   console.log(data);
   return (
     <>
@@ -50,7 +39,7 @@ export default function Home({ user }) {
           <ContainerLoadPosts>
             <LoadPosts>Carregar novos posts</LoadPosts>
           </ContainerLoadPosts>
-          {data &&
+          {
             data?.map((post) => {
               return (
                 <Posts
