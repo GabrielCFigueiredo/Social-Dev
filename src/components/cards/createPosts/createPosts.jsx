@@ -14,7 +14,7 @@ import axios from "axios";
 import { useSWRConfig } from "swr";
 
 export default function CreatePosts({ userName }) {
-    const { mutate } = useSWRConfig()
+  const { mutate } = useSWRConfig();
   const {
     control,
     handleSubmit,
@@ -32,8 +32,8 @@ export default function CreatePosts({ userName }) {
         data
       );
       if (response.status === 201) {
-         reset()
-         mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`) 
+        reset();
+        mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`);
       }
     } catch (error) {
       console.log(error.response);
