@@ -40,6 +40,8 @@ export default function Home({ user }) {
                 user={post.createdBy.user}
                 date={post.createdDate}
                 text={post.text}
+                id={post._id}
+                isOwner={post.createdBy._id === user.id}
               />
             );
           })}
