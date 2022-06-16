@@ -10,3 +10,8 @@ export const createSchema = Joi.object({
 export const deleteSchema = Joi.object({
   id: Joi.objectId().required(),
 });
+
+export const editSchema = Joi.object({
+  id: Joi.objectId().required(),
+  text: Joi.string().required().max(256),
+});

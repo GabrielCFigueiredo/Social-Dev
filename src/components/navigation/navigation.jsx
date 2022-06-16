@@ -22,12 +22,20 @@ export default function Navigation({ options }) {
       document.removeEventListener("click", handleClickOutside, true);
     };
   }, [menuRef]);
+
+  const handleClick = (onClick) => {
+    setShow(false);
+    onClick();
+  };
   return (
     <WrapperNavigation>
       <Dots onClick={() => setShow(!show)} src="/three-dots.svg" />
       <Container show={show} ref={menuRef} onBlur={() => setShow(false)}>
         {options.map((option, pos) => (
-          <ContainerOption key={`menu-option-${pos}`} onClick={option.onClick}>
+          <ContainerOption
+            key={`menu-option-${pos}`}
+            onClick={() => handleClick(option.onClick)}
+          >
             {option.text}
           </ContainerOption>
         ))}

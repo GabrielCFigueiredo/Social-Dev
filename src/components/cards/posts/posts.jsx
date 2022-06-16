@@ -9,11 +9,19 @@ import moment from "moment";
 import Navigation from "../../navigation/navigation";
 import { useSWRConfig } from "swr";
 import axios from "axios";
+import { useState } from "react";
+import EditPosts from "../editPosts/editPosts";
 
 export default function Posts({ user, text, date, isOwner, id }) {
   const { mutate } = useSWRConfig();
+  const [editPost, setEditPost] = useState(false);
+
   const handleEdit = () => {
-    console.log("editar post");
+    setEditPost(true);
+  };
+  const handleSaveEdit = () => {
+    setEditPost(false);
+    mutate(`${process.env.NEXT_PUBLIC_API_URL}/api/post`);
   };
   const handleDelete = async () => {
     try {
@@ -54,7 +62,13 @@ export default function Posts({ user, text, date, isOwner, id }) {
       )}
 
       <StyledData>{moment(date).format("LLL")}</StyledData>
-      <StyledText>{text}</StyledText>
+      <StyledText>
+        {editPost ? (
+          <EditPosts id={id} text={text} onSave={handleSaveEdit} />
+        ) : (
+          text
+        )}
+      </StyledText>
     </WrapperPosts>
   );
 }

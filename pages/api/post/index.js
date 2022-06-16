@@ -5,10 +5,12 @@ import { ironConfig } from "../../../lib/middleWares/ironSession";
 import {
   createSchema,
   deleteSchema,
+  editSchema,
 } from "../../../modules/posts/posts.schema";
 import {
   createPost,
   deletePost,
+  editPost,
   getPosts,
 } from "../../../modules/posts/posts.service";
 
@@ -41,5 +43,15 @@ handler.delete(validate(deleteSchema), async (req, res) => {
     return res.status(500).send(error.message);
   }
 });
-
+handler.patch(validate(editSchema), async (req, res) => {
+  try {
+    if (!req.session.user) return res.status(401).send();
+    const postEdit = await editPost(req.body, req.session.user);
+    console.log(postEdit);
+    if (postEdit) return res.status(200).send({ ok: true });
+    return res.status(400).send("not found");
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+});
 export default withIronSessionApiRoute(handler, ironConfig);
