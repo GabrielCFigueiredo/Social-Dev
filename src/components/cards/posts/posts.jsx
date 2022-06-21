@@ -42,10 +42,9 @@ export default function Posts({ user, text, date, isOwner, id }) {
   };
   return (
     <WrapperPosts>
-      {isOwner && (
-        <ContainerNavigation>
-          <StyledUser>@{user}</StyledUser>
-
+      <ContainerNavigation>
+        <StyledUser>@{user}</StyledUser>
+        {isOwner && (
           <Navigation
             options={[
               {
@@ -58,8 +57,8 @@ export default function Posts({ user, text, date, isOwner, id }) {
               },
             ]}
           />
-        </ContainerNavigation>
-      )}
+        )}
+      </ContainerNavigation>
 
       <StyledData>{moment(date).format("LLL")}</StyledData>
       <StyledText>

@@ -47,7 +47,6 @@ handler.patch(validate(editSchema), async (req, res) => {
   try {
     if (!req.session.user) return res.status(401).send();
     const postEdit = await editPost(req.body, req.session.user);
-    console.log(postEdit);
     if (postEdit) return res.status(200).send({ ok: true });
     return res.status(400).send("not found");
   } catch (error) {
