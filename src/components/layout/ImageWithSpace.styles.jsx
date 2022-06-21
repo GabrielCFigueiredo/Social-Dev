@@ -60,5 +60,8 @@ export const Form = styled.form `
 `
 export const Register = styled.p `
   font-size: 16px;  
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
     
 `
