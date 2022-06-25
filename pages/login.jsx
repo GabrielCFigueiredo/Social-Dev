@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "../modules/user/user.schema";
-import { Button } from "../src/components/button/button.styles";
+import Button from "../src/components/button/button";
+
 import Input from "../src/components/input/input";
 import ImageWithSpace from "../src/components/layout/ImageWithSpace";
 import {
@@ -12,6 +13,7 @@ import {
   FormContainer,
   Register,
 } from "../src/components/layout/ImageWithSpace.styles";
+import Loading from "../src/components/loading/loading";
 import { H1, H2, H3 } from "../src/components/typography/Typography.styles";
 
 export default function Login() {
