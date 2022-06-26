@@ -2,6 +2,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "../modules/user/user.schema";
 import Button from "../src/components/button/button";
@@ -13,10 +14,10 @@ import {
   FormContainer,
   Register,
 } from "../src/components/layout/ImageWithSpace.styles";
-import Loading from "../src/components/loading/loading";
 import { H1, H2, H3 } from "../src/components/typography/Typography.styles";
 
 export default function Login() {
+  const [publish, setPublish] = useState(false);
   const router = useRouter();
 
   const {
@@ -30,6 +31,7 @@ export default function Login() {
 
   const onSubmit = async (data) => {
     try {
+      setPublish(true);
       const { status } = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/user/login`,
         data
@@ -45,8 +47,11 @@ export default function Login() {
           setError("userOrEmail", { type: "userOrEmail" });
         }
       }
+    } finally {
+      setPublish(false);
     }
   };
+
   return (
     <ImageWithSpace>
       <H1># Social Dev</H1>
@@ -69,7 +74,11 @@ export default function Login() {
           error={errors.password}
           type={"password"}
         />
-        <Button type="submit" disabled={Object.keys(errors).length > 0}>
+        <Button
+          loading={publish}
+          type="submit"
+          disabled={Object.keys(errors).length > 0}
+        >
           Entrar
         </Button>
       </Form>

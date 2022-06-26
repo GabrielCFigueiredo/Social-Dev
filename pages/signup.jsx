@@ -14,8 +14,10 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { signupSchema } from "../modules/user/user.schema";
 import Button from "../src/components/button/button";
+import { useState } from "react";
 
 export default function Signup() {
+  const [publish, setPublish] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -28,6 +30,7 @@ export default function Signup() {
 
   const handleForm = async (data) => {
     try {
+      setPublish(true);
       const { status } = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/user/signup`,
         data
@@ -40,6 +43,8 @@ export default function Signup() {
         setError(error.response.data.duplicatedKey, {
           type: "duplicated",
         });
+    } finally {
+      setPublish(false);
     }
   };
 
@@ -86,7 +91,11 @@ export default function Signup() {
           {...register("password")}
           error={errors.password}
         />
-        <Button type="submit" disabled={Object.keys(errors).length > 0}>
+        <Button
+          loading={publish}
+          type="submit"
+          disabled={Object.keys(errors).length > 0}
+        >
           Cadastrar
         </Button>
       </Form>

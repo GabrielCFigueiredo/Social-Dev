@@ -1,4 +1,3 @@
-import { ButtonMedium } from "../../button/button.styles";
 import { useForm } from "react-hook-form";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { createSchema } from "../../../../modules/posts/posts.schema";
@@ -12,8 +11,11 @@ import {
 import ControlledTextArea from "../../textarea/controlledTextArea";
 import axios from "axios";
 import { useSWRConfig } from "swr";
+import Button from "../../button/button";
+import { useState } from "react";
 
 export default function CreatePosts({ userName }) {
+  const [publish, setPublish] = useState(false);
   const { mutate } = useSWRConfig();
   const {
     control,
@@ -27,6 +29,7 @@ export default function CreatePosts({ userName }) {
 
   const onSubmit = async (data) => {
     try {
+      setPublish(true);
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/api/post`,
         data
@@ -37,6 +40,8 @@ export default function CreatePosts({ userName }) {
       }
     } catch (error) {
       console.log(error.response);
+    } finally {
+      setPublish(false);
     }
   };
   return (
@@ -53,7 +58,9 @@ export default function CreatePosts({ userName }) {
         </TextContainer>
         <ContainerButton>
           <ButtonText>A sua mensagem será publica.</ButtonText>
-          <ButtonMedium disabled={!isValid}>Postar Mensagem</ButtonMedium>
+          <Button loading={publish} disabled={!isValid}>
+            Postar Mensagem
+          </Button>
         </ContainerButton>
       </form>
     </WrapperCreatePost>
