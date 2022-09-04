@@ -54,7 +54,7 @@ export default function Login() {
 
   return (
     <ImageWithSpace>
-      <H1># Social Dev</H1>
+      <H1># Twitter Dev</H1>
       <H3>Tudo que acontece no mundo dev, está aqui!</H3>
       <FormContainer>
         <H2>Entre em sua Conta</H2>

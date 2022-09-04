@@ -50,7 +50,7 @@ export default function Signup() {
 
   return (
     <ImageWithSpace>
-      <H1># Social Dev</H1>
+      <H1># Twitter Dev</H1>
       <H3>Tudo que acontece no mundo dev, está aqui!</H3>
       <FormContainer>
         <H2>Crie sua Conta</H2>

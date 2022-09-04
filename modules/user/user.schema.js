@@ -28,6 +28,8 @@ export const signupSchema = Joi.object({
 
 export const loginSchema = Joi.object({
   userOrEmail: Joi.string().required(),
-  password: Joi.string().required().min(6)
-  .message('O campo "senha" precisa ter no mínimo {{#limit}} caracteres.'),
+  password: Joi.string()
+    .required()
+    .min(6)
+    .message('O campo "senha" precisa ter no mínimo {{#limit}} caracteres.'),
 });

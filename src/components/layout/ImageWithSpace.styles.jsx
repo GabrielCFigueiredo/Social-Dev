@@ -31,7 +31,7 @@ export const WrapperCard = styled.div `
     flex-direction: column;
     gap: 16px;
     padding: 30px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 0px);
     overflow-y: auto;
     
     @media (min-width: ${WITH_BREAK}) {
